@@ -27,7 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
 # Application definition
 
 INSTALLED_APPS = (
@@ -37,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'students',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,7 +58,8 @@ ROOT_URLCONF = 'studentsdb.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [#os.path.join(BASE_DIR,'students','templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
