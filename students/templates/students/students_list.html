@@ -1,3 +1,4 @@
+{% load staticfiles %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +7,7 @@
 	<title>Сервис учета студентов</title>
 <link rel="stylesheet"
 href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="static/css/main.css">
+<link rel="stylesheet" href="{% static "css/main.css" %}">
 
 
 </head>
@@ -33,9 +34,9 @@ href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
 	<div class="row" id="sub-header">
 		<div class="col-xs-12">
 			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active"><a href="#">Students</a></li>
-				<li role="presentation" ><a href="#">Visiting</a></li>
-				<li role="presentation" ><a href="#">Groups</a></li>
+				<li role="presentation" class="active"><a href="{% url 'home' %}">Students</a></li>
+				<li role="presentation" ><a href="{% url 'journal' %}">Visiting</a></li>
+				<li role="presentation" ><a href="{% url 'groups_list' %}">Groups</a></li>
 			</ul>
 		</div>
 	</div>
@@ -46,8 +47,9 @@ href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
 		<div class="col-xs-12" id="content-column">
 			<div class="alert alert-warning">Changes canceled</div>
 			<h2>Base of students</h2>
-			<a href="#" class="btn btn-primary">Add student</a>
+			<a href="{% url 'students_add' %}" class="btn btn-primary">Add student</a>
 				<div>
+				{%	if students %}
 				<table class="table table-hover table-striped">
 					<thead>
 						<tr>
@@ -60,12 +62,13 @@ href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
 						</tr>
 					</thead>
 					<tbody>
+						{% for student in students %}
 						<tr>
-							<td>1</td>
-							<td><img height="30" width="30" class="img-circle" src="static/img/me1.jpg" alt="img"></td>
-							<td><a href="#" title="Edit">Nelepa</a></td>
-							<td><a href="#" title="Edit">Sergey</a></td>
-							<td>1231</td>
+							<td>{{ forloop.counter }}</td>
+							<td><img height="30" width="30" class="img-circle" src="{{ student.image }}" alt="imag"></td>
+							<td><a href="#" title="Edit">{{ student.last_name }}</a></td>
+							<td><a href="#" title="Edit">{{ student.first_name }}</a></td>
+							<td>{{	student.ticket }}</td>
 							<td>
 								<div class="dropdown">
 									<button class="btn btn-default dropdown-tooggle" type="button" data-toggle="dropdown">Action
@@ -73,57 +76,23 @@ href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
 									</button>
 									<ul class="dropdown-menu" role="menu">
 									<li role="presentation"><a href="#" role="menuitem" tabindex="-1">Visiting</a></li>
-									<li role="presentation"><a href="#" role="menuitem" tabindex="-1">Edit</a></li>
+									<li role="presentation"><a href="{% url "students_edit" student.id %}" role="menuitem" tabindex="-1">Edit</a></li>
 									<li role="presentation"><a href="#" role="menuitem" tabindex="-1">Delete</a></li>
 									</ul>
 								</div>
 							</td>
 						</tr>
-						<tr>
-							<td>1</td>
-							<td><img height="30" class="img-circle" width="30" src="./img/me1.jpg" alt="img"></td>
-							<td><a href="#" title="Edit">Nelepa</a></td>
-							<td><a href="#" title="Edit">Sergey</a></td>
-							<td>1231</td>
-							<td>
-								<div class="dropdown">
-									<button class="btn btn-default dropdown-tooggle" type="button" data-toggle="dropdown">Action
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" role="menu">
-									<li role="presentation"><a href="#" role="menuitem" tabindex="-1">Visiting</a></li>
-									<li role="presentation"><a href="#" role="menuitem" tabindex="-1">Edit</a></li>
-									<li role="presentation"><a href="#" role="menuitem" tabindex="-1">Delete</a></li>
-									</ul>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td><img height="30" class="img-circle" width="30" src="./img/me2.jpg" alt="img"></td>
-							<td><a href="#" title="Edit">Sopelnik</a></td>
-							<td><a href="#" title="Edit">Julia</a></td>
-							<td>12</td>
-							<td>
-								<div class="dropdown">
-									<button class="btn btn-default dropdown-tooggle" type="button" data-toggle="dropdown">Action
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" role="menu">
-									<li role="presentation"><a href="#" role="menuitem" tabindex="-1">Visiting</a></li>
-									<li role="presentation"><a href="#" role="menuitem" tabindex="-1">Edit</a></li>
-									<li role="presentation"><a href="#" role="menuitem" tabindex="-1">Delete</a></li>
-									</ul>
-								</div>
-							</td>
-						</tr>
+						{% endfor %}
 					</tbody>
 				</table>
-				
+				{% else %}
+				<p>Students not found</p>
+				{% endif %}
 				</div>
 					</div>
 	</div>
 	<!--End main page-->
+
 	<nav>
 <ul class="pagination">
 <li><a href="#">&laquo;</a></li>

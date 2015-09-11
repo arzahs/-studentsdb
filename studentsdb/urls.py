@@ -18,6 +18,16 @@ from django.contrib import admin
 from django.conf.urls.static import static
 
 urlpatterns = [
+    #Students urls
+    url(r'^students/add/$', 'students.views.students_add', name='students_add'),
+    url(r'^students/(?P<sid>[0-9]+)/edit/$', 'students.views.students_edit', name='students_edit'),
+  
+    #Groups
+    url(r'^groups/$', 'students.views.groups_list', name='groups_list'),
+
+    #Journal
+    url(r'^journal/$', 'students.views.journal', name='journal'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^', 'students.views.test', name='test'),
+    url(r'^', 'students.views.home', name='home'),
+    
 ] 
