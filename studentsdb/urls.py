@@ -19,17 +19,17 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     #Students urls
-    url(r'^students/add/$', 'students.views.students_add', name='students_add'),
-    url(r'^students/(?P<sid>[0-9]+)/edit/$', 'students.views.students_edit', name='students_edit'),
-	url(r'^students/(?P<sid>[0-9]+)/visiting/$', 'students.views.students_visiting', name='students_visiting'),  
-    url(r'^students/(?P<sid>[0-9]+)/delete/$', 'students.views.students_delete', name='students_delete'),
+    url(r'^students/add/$', 'students.views.student.students_add', name='students_add'),
+    url(r'^students/(?P<sid>[0-9]+)/edit/$', 'students.views.student.students_edit', name='students_edit'),
+	url(r'^students/(?P<sid>[0-9]+)/visiting/$', 'students.views.student.students_visiting', name='students_visiting'),  
+    url(r'^students/(?P<sid>[0-9]+)/delete/$', 'students.views.student.students_delete', name='students_delete'),
     #Groups
-    url(r'^groups/$', 'students.views.groups_list', name='groups_list'),
-    url(r'^groups/(?P<sid>[0-9]+)/edit/$', 'students.views.groups_edit', name='group_edit'),
-    url(r'^groups/(?P<sid>[0-9]+)/delete/$', 'students.views.groups_delete', name='group_delete'),
+    url(r'^groups/$', 'students.views.group.groups_list', name='groups_list'),
+    url(r'^groups/(?P<sid>[0-9]+)/edit/$', 'students.views.group.groups_edit', name='group_edit'),
+    url(r'^groups/(?P<sid>[0-9]+)/delete/$', 'students.views.group.groups_delete', name='group_delete'),
     #Journal
-    url(r'^journal/$', 'students.views.journal', name='journal'),
+    url(r'^journal/$', 'students.views.student.journal', name='journal'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^', 'students.views.home', name='home'),
+    url(r'^', 'students.views.student.home', name='home'),
     
 ] 

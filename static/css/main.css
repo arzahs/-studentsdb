@@ -22,3 +22,17 @@ height: 30px;
 line-height: 30px;
 color: #555555;
 }
+.month{
+display: block;
+width: 100px;
+margin: 10px auto;
+}
+th, td{
+    border: 0px;
+width: 8px;
+padding: 0px;
+text-align: center;
+}
+.buttonEdit {
+background-color: #eee;
+}

@@ -1,50 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Сервис учета студентов</title>
-<link rel="stylesheet"
-href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="./css/main.css">
+{% extends "students/base.html" %}
 
+{% load static from staticfiles %}
+{% block meta_title %}Відвідування студентів{% endblock meta_title %}
+{% block title %}<h2>Облік відвідування</h2>{% endblock title %}
 
-</head>
-<body>
-	
-	<div class="container">
-	<!--Header-->
-		<div class="row" id="header">
-			<div class="col-xs-8">
-				<h1>Service accounting students</h1>
-			</div>
-			<div class="col-xs-4" id="group-selector">
-				<strong>Група:</strong>	
-				<select>
-				<option value="">Усі Студенти</option>
-				<option value="">МтМ - 21, Подоба Віталій (No 254)</option>
-				<option value="">МтМ - 22, Корост Андрій (No 2123)</option>
-				</select>
-			</div>
-		</div>
-	
-	<!--End header-->
-	<!--Subheader-->
-	<div class="row" id="sub-header">
-		<div class="col-xs-12">
-			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" ><a href="#">Students</a></li>
-				<li role="presentation" class="active" ><a href="#">Visiting</a></li>
-				<li role="presentation" ><a href="#">Groups</a></li>
-			</ul>
-		</div>
-	</div>
-	<!--endsubheader-->
-	
-	<!--Start Main Page-->
-	<div class="row" id="content-columns">
-		<div class="col-xs-12" id="content-column">
-			<h2>Records of visiting</h2>
-			<div class="month"><a href="#">&larr;</a>Match 13<a href="#">&rarr;</a></div>
+{% block content %}
+<div class="month"><a href="#">&larr;</a>Match 13<a href="#">&rarr;</a></div>
 				<div>
 				<table class="table table-bordered table-striped table-condensed">
 					<thead>
@@ -155,60 +116,6 @@ href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
 				            <td><input type="checkbox"></td>
 				            <td><input type="checkbox"></td>
 						</tr>
-							<tr>
-							<td>1</td>
-							<td>Alex Nelepa</td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-				            <td><input type="checkbox"></td>
-						</tr>
-					</tbody>
+						<tbody>
 				</table>
-				
-				</div>
-					</div>
-	</div>
-	<!--End main page-->
-
-	<!--Foteer-->
-	<div class="row" id="footer">
-		<div class="col-xs-12">
-			&copy; 2015 Sevice accountig students
-		</div>
-	</div>
-	<!--End foter-->
-	</div>
-	<!--End container-->
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
-<script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-
-</body>
-</html>
+{% endblock content %}
