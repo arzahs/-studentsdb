@@ -1,0 +1,58 @@
+{% extends "students/base.html" %}
+{%	block meta_title %}Service for recording students{%	endblock	%}
+{% load staticfiles %}
+{% block title %}<h2>Groups</h2>{% endblock title %}
+
+	<!--endsubheader-->
+{% block content %}
+
+			<a href="#" class="btn btn-primary">Add group</a>
+				<div>
+				{%	if groups %}
+				<table class="table table-hover table-striped">
+					<thead>
+						<tr>
+							<th>№</th>
+							<th>Title</th>
+							<th>Steward</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+					{% for group in groups %}
+						<tr>
+							<td>{{ forloop.counter }}</td>
+							<td><a href="{% url "group_edit" group.id %}" title="Edit">{{ group.name}}</a></td>
+							<td><a href="{% url "students_edit" group.steward.id %}" title="Edit">{{ group.steward.name }}</a></td>
+							<td>
+								<div class="dropdown">
+									<button class="btn btn-default dropdown-tooggle" type="button" data-toggle="dropdown">Action
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" role="menu">
+									<li role="presentation"><a href="{% url "group_edit" group.id %}" role="menuitem" tabindex="-1">Edit</a></li>
+									<li role="presentation"><a href="{% url "group_delete" group.id %}" role="menuitem" tabindex="-1">Delete</a></li>
+									</ul>
+								</div>
+							</td>
+						</tr>
+						{% endfor %}					
+					</tbody>
+				</table>
+				{% else %}
+				<p>Groups not found</p>
+				{% endif %}
+				</div>
+
+	<!--End main page-->
+	<nav>
+<ul class="pagination">
+<li class="active"><a href="#">1</a></li>
+<li ><a href="#">2</a></li>
+<li><a href="#">3</a></li>
+<li><a href="#">4</a></li>
+<li><a href="#">5</a></li>
+<li><a href="#">Next</a></li>
+</ul>
+</nav>
+{%	endblock content %}
