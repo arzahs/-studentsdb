@@ -3,28 +3,23 @@
 from django.shortcuts import render
 from django.http.response import HttpResponse
 from django.template import RequestContext
-
-def home(request):
-	students = (
-		{'id': 1,
-		'first_name': 'Сергей',
-		'last_name':'Нелепа',
-		'ticket':1,
-		'image':'static/img/me2.jpg'
-		},
-		{'id': 2,
-		'first_name': 'Сергей',
-		'last_name':'Нелепа',
-		'ticket':11,
-		'image':'static/img/me2.jpg'
-		},
-		{'id': 3,
-		'first_name': 'Сергей',
-		'last_name':'Нелепа',
-		'ticket':12,
-		'image':'static/img/me2.jpg'
-		},
-	)
+from students.models import Student 
+from django.core.paginator  import Paginator, EmptyPage, PageNotAnInteger
+def student_list(request):
+	students = Student.objects.all();
+	order_by = request.GET.get('order_by', '')
+	if order_by in ('last_name', 'first_name', 'ticket'):
+		students = students.order_by(order_by)
+		if request.GET.get('reverse', '') == '1':
+			students = students.reverse()
+	paginator = Paginator(students, 3)
+	page = request.GET.get('page')
+	try:
+		students = paginator.page(page)
+	except PageNotAnInteger:
+		students = paginator.page(1)
+	except EmptyPage:
+		students = paginator.page(paginator.num_pages)
 	groups = ({'name':'mf111'}, {'name':'mf112'}, {'name':'mf113'})
 	return render(request, 'students/students_list.html', {"students": students, "groups": groups})
 

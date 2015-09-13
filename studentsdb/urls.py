@@ -30,6 +30,6 @@ urlpatterns = [
     #Journal
     url(r'^journal/$', 'students.views.student.journal', name='journal'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^', 'students.views.student.home', name='home'),
+    url(r'^', 'students.views.student.student_list', name='home'),
     
 ] 

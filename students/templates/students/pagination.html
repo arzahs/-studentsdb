@@ -1,10 +1,18 @@
+
 <nav>
 	<ul class="pagination">
-		<li class="active"><a href="#">1</a></li>
-		<li><a href="#">2</a></li>
-		<li><a href="#">3</a></li>
-		<li><a href="#">4</a></li>
-		<li><a href="#">5</a></li>
-		<li><a href="#">Next</a></li>
+	{% if students.has_previous %}
+		<li><a href="{% url 'home'%}?page={{ students.previous_page_number }}">&laquo;</a></li>
+	{% endif %}
+		{% for p in students.paginator.page_range %}
+			{% if p == students.number %}
+				<li class="active"><a href="{% url 'home'%}?page={{ p }}">{{ p }}</a></li>
+			{% else %}
+				<li><a href="{% url 'home'%}?page={{ p }}">{{ p }}</a></li>
+			{% endif %}
+		{% endfor %}
+		{% if students.has_next %}
+		<li><a href="{% url 'home'%}?page={{ students.next_page_number }}">&raquo;</a></li>
+		{% endif %}
 	</ul>
 </nav>
