@@ -8,7 +8,7 @@ class  Student(models.Model):
 	last_name = models.CharField(max_length=256, blank=False, verbose_name='Last Name')
 	middle_name = models.CharField(max_length=256, blank=True, verbose_name='Middle Name', default='')
 	birthday = models.DateField(blank=False, verbose_name='Birthday')
-	#photo = models.ImageField(blank=True, verbose_name='Photo')
+	photo = models.ImageField(blank=True, verbose_name='Photo')
 	ticket = models.CharField(max_length=256, blank=False, verbose_name='Ticket')
 	student_group = models.ForeignKey('Group',
 		verbose_name='Group', 

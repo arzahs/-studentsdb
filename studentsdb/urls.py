@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf.urls.static import static
+from .settings import MEDIA_ROOT, DEBUG
 
 urlpatterns = [
     #Students urls
@@ -30,6 +31,10 @@ urlpatterns = [
     #Journal
     url(r'^journal/$', 'students.views.student.journal', name='journal'),
     url(r'^admin/', include(admin.site.urls)),
+    #debug media 
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT,}),
+    #------
     url(r'^', 'students.views.student.student_list', name='home'),
-    
+
 ] 
+
