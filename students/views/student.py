@@ -3,7 +3,7 @@
 from django.shortcuts import render
 from django.http.response import HttpResponse
 from django.template import RequestContext
-from students.models import Student 
+from students.models import Student, Group 
 from django.core.paginator  import Paginator, EmptyPage, PageNotAnInteger
 def student_list(request):
 	students = Student.objects.all();
@@ -20,7 +20,7 @@ def student_list(request):
 		students = paginator.page(1)
 	except EmptyPage:
 		students = paginator.page(paginator.num_pages)
-	groups = ({'name':'mf111'}, {'name':'mf112'}, {'name':'mf113'})
+	groups = Group.objects.all()
 	return render(request, 'students/students_list.html', {"students": students, "groups": groups})
 
 def students_add(request):
