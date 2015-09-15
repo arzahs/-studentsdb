@@ -1,0 +1,70 @@
+{% extends "students/base.html" %}
+{%	block meta_title %}Add student{%	endblock	%}
+{% load staticfiles %}
+{% block title %}<h2>Add student</h2>{% endblock title %}
+{% block content %}
+<form class="form-horizontal" method="post" action="." enctype="multipart/form-data">
+{% csrf_token %}
+<span class="error">{{ error.first_name }}</span>
+  <div class="form-group">
+    <label for="first_name" class="col-sm-2 control-label" >First name*</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Sergey" required>
+    </div>
+  </div>
+  <span class="error">{{ error.last_name }}</span>
+  <div class="form-group">
+    <label for="last_name" class="col-sm-2 control-label">Last name*</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Nelepa" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="middle_name" class="col-sm-2 control-label">Middle name</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="middle_name" id="middle_name" placeholder="Vladimirovich">
+    </div>
+  </div>
+  <span class="error">{{ error.ticket }}</span>
+  <div class="form-group">
+    <label for="ticket" class="col-sm-2 control-label">Ticket*</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="ticket" id="ticket" placeholder="123" required>
+    </div>
+  </div>
+  <span class="error">{{ error.birthday }}</span>
+  <div class="form-group">
+    <label for="birthday" class="col-sm-2 control-label">Date of birthday*</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="birthday" id="birthday" placeholder="1985-02-03" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="photo" class="col-sm-2 control-label">Photo</label>
+      <div class="col-sm-4"><input type="file" name="photo" id="photo"></div>
+  </div>
+  <span class="error">{{ error.group }}</span>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Group*</label>
+      <div class="col-sm-4" ><select name="student_group" required>
+				<option value="">Select group</option>
+				{% for group in groups %}
+				<option value="{{ group.id }}">{{ group.title }}</option>
+				{% endfor %}
+				</select></div>
+  </div>
+  <div class="form-group">
+    <label  class="col-sm-2 control-label">Others notes</label>
+    <div class="col-sm-4"><textarea class="form-control" name="notes" rows="3"></textarea></div>
+  </div>
+  <div class="row buttonEdit">
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <input type="submit" class="btn btn-primary" value="Save" name="add_button"/>
+      <input type="submit" class="btn btn-primary" value="Cancel" name="cancel_button" />
+    </div>
+    </div>
+  </div>
+  
+</form>
+{%	endblock	%}
