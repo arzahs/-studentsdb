@@ -33,6 +33,8 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     #debug media 
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT,}),
+    url(r'^contact-admin/$', 'students.views.contact_admin.contact_admin', name='contact_admin'),
+
     #------
     url(r'^', 'students.views.student.student_list', name='home'),
 
