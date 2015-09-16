@@ -9,14 +9,14 @@
   <div class="form-group">
     <label for="first_name" class="col-sm-2 control-label" >First name*</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Sergey" required>
+      <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Sergey" >
     </div>
   </div>
   <span class="error">{{ error.last_name }}</span>
   <div class="form-group">
     <label for="last_name" class="col-sm-2 control-label">Last name*</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Nelepa" required>
+      <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Nelepa" >
     </div>
   </div>
   <div class="form-group">
@@ -29,14 +29,14 @@
   <div class="form-group">
     <label for="ticket" class="col-sm-2 control-label">Ticket*</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="ticket" id="ticket" placeholder="123" required>
+      <input type="text" class="form-control" name="ticket" id="ticket" placeholder="123" >
     </div>
   </div>
   <span class="error">{{ error.birthday }}</span>
   <div class="form-group">
     <label for="birthday" class="col-sm-2 control-label">Date of birthday*</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="birthday" id="birthday" placeholder="1985-02-03" required>
+      <input type="text" class="form-control" name="birthday" id="birthday" placeholder="1985-02-03">
     </div>
   </div>
   <div class="form-group">
@@ -46,7 +46,7 @@
   <span class="error">{{ error.group }}</span>
   <div class="form-group">
     <label class="col-sm-2 control-label">Group*</label>
-      <div class="col-sm-4" ><select name="student_group" required>
+      <div class="col-sm-4" ><select name="student_group">
 				<option value="">Select group</option>
 				{% for group in groups %}
 				<option value="{{ group.id }}">{{ group.title }}</option>

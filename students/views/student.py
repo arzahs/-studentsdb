@@ -81,12 +81,12 @@ def students_add(request):
 			if not errors:
 				student =Student(**data)
 				student.save()
-				return HttpResponseRedirect(reverse('home'))
+				return HttpResponseRedirect(u'%s?status_message=Student has been added!' % reverse('home'))
 			else:
 				return render(request, 'students/student_add.html', {'groups': Group.objects.all().order_by('title'), 'error': errors})
 		
 		elif request.POST.get('cancel_button') is not None:
-			return HttpResponseRedirect(reverse('home'))
+			return HttpResponseRedirect(u'%s?status_message=Adding a student has been canceled!' % reverse('home'))
 	else:
 		return render(request, 'students/student_add.html', {'groups': Group.objects.all().order_by('title')})
 
