@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-
+from studentsdb.security import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, DATABASES 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'students',
 )
 
@@ -79,20 +80,6 @@ WSGI_APPLICATION = 'studentsdb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-DATABASES = {
- #   'default': {
-#      'ENGINE': 'django.db.backends.sqlite3',
- #       'NAME': os.path.join(BASE_DIR,'..', 'db.sqlite3'),
-  #  }
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST':'localhost',
-        'NAME': 'students_db',        
-        'USER':'root',
-        'PASSWORD': 'admin',
-   }
-}
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -114,3 +101,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
+
+ADMIN_EMAIL = 'admin@studentsdb.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 465
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
