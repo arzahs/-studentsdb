@@ -106,11 +106,12 @@ class StudentUpdateView(UpdateView):
 	#form_class = StudentForm
 	
 	def get_success_url(self):
-		return '/'
-
+		#return '/'
+		#return u'%s/?status_message=Student has been saved!'% reverse('home')
+		return u'%s?status_message=Student has been saved!' % reverse('home')
 	def post(self, request, *args, **kwargs):
 		if request.POST.get('cancel_button'):
-			return HttpResponseRedirect(reverse('home'))
+			return HttpResponseRedirect(u'%s?status_message=Changing a student has been canceled!' %reverse('home'))
 		else:
 			return super(StudentUpdateView, self).post(request, *args, **kwargs)
 

@@ -2,6 +2,11 @@
 {%  block meta_title %}Edit student{% endblock  %}
 {% load staticfiles %}
 {% block title %}<h2>Edit student</h2>{% endblock title %}
+{% block status_message %}
+	{% if form.errors %}
+					<div class="alert alert-warning" role="alert">Please correct the following errors</div>
+	{% endif %}
+{% endblock %}
 {% block content %}
 <form method="post" action="." enctype="multipart/form-data">
 {% csrf_token %}
