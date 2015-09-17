@@ -7,6 +7,8 @@ from students.models import Student, Group
 from django.core.urlresolvers import reverse
 from django.core.paginator  import Paginator, EmptyPage, PageNotAnInteger
 from datetime import datetime
+from django.views.generic import UpdateView
+from django.forms import ModelForm
 def student_list(request):
 	students = Student.objects.all();
 	order_by = request.GET.get('order_by', '')
@@ -90,8 +92,27 @@ def students_add(request):
 	else:
 		return render(request, 'students/student_add.html', {'groups': Group.objects.all().order_by('title')})
 
-def students_edit(request, sid):
-	return HttpResponse('here will be form students %s' % sid)
+# class StudentForm(ModelForm):
+    
+#     class Meta:
+#         model = Student
+#         fields = '__all__'
+
+        
+class StudentUpdateView(UpdateView):
+	model = Student
+	fields = '__all__'
+	template_name = 'students/student_edit.html'
+	#form_class = StudentForm
+	
+	def get_success_url(self):
+		return '/'
+
+	def post(self, request, *args, **kwargs):
+		if request.POST.get('cancel_button'):
+			return HttpResponseRedirect(reverse('home'))
+		else:
+			return super(StudentUpdateView, self).post(request, *args, **kwargs)
 
 def students_visiting(request, sid):
 	return HttpResponse('visiting %s' % sid)
