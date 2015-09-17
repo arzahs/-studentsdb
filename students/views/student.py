@@ -9,6 +9,9 @@ from django.core.paginator  import Paginator, EmptyPage, PageNotAnInteger
 from datetime import datetime
 from django.views.generic import UpdateView
 from django.forms import ModelForm
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
+from crispy_forms.bootstrap import FormActions
 def student_list(request):
 	students = Student.objects.all();
 	order_by = request.GET.get('order_by', '')
@@ -92,23 +95,40 @@ def students_add(request):
 	else:
 		return render(request, 'students/student_add.html', {'groups': Group.objects.all().order_by('title')})
 
-# class StudentForm(ModelForm):
+class StudentForm(ModelForm):
     
-#     class Meta:
-#         model = Student
-#         fields = '__all__'
+	class Meta:
+		model = Student
+		fields = '__all__'
+	
+	def __init__(self, *args, **kwargs):
+		super(StudentForm, self).__init__(*args, **kwargs)
+		self.helper = FormHelper(self)
+		# set form tag attributes
+		self.helper.form_action = reverse('students_edit',kwargs={'pk': kwargs['instance'].id})
+		self.helper.form_method = 'POST'
+		self.helper.form_class = 'form-horizontal'
+		# set form field properties
+		self.helper.help_text_inline = True
+		self.helper.html5_required = True
+		self.helper.label_class = 'col-sm-2 control-label'
+		self.helper.field_class = 'col-sm-10'
+		# add buttons
+		self.helper.layout[-1] = FormActions(
+		Submit('add_button', u'Save', css_class="btn btn-primary"),
+		Submit('cancel_button', u'Cancel', css_class="btn btn-link"),) 
 
         
 class StudentUpdateView(UpdateView):
 	model = Student
-	fields = '__all__'
 	template_name = 'students/student_edit.html'
-	#form_class = StudentForm
+	form_class = StudentForm
 	
 	def get_success_url(self):
 		#return '/'
 		#return u'%s/?status_message=Student has been saved!'% reverse('home')
 		return u'%s?status_message=Student has been saved!' % reverse('home')
+	
 	def post(self, request, *args, **kwargs):
 		if request.POST.get('cancel_button'):
 			return HttpResponseRedirect(u'%s?status_message=Changing a student has been canceled!' %reverse('home'))
