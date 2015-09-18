@@ -1,0 +1,9 @@
+{% extends "students/base.html" %}
+{%	block meta_title %}Add student{%	endblock	%}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block title %}<h2>Add student</h2>{% endblock title %}
+{% block content %}
+{% csrf_token %}
+{% crispy form %}
+{%	endblock	%}

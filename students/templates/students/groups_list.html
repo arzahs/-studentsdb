@@ -6,7 +6,7 @@
 	<!--endsubheader-->
 {% block content %}
 
-			<a href="#" class="btn btn-primary">Add group</a>
+			<a href="{% url "group_add" %}" class="btn btn-primary">Add group</a>
 				<div>
 				{%	if groups %}
 				<table class="table table-hover table-striped">
@@ -53,7 +53,7 @@
 	{% endif %}
 		{% for g in groups.paginator.page_range %}
 			{% if g == groups.number %}
-				<li class="active"><a href="{% url 'groups_list'%}?page={{ p }}">{{ p }}</a></li>
+				<li class="active"><a href="{% url 'groups_list'%}?page={{ g }}">{{ g }}</a></li>
 			{% else %}
 				<li><a href="{% url 'groups_list'%}?page={{ g }}">{{ g }}</a></li>
 			{% endif %}

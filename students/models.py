@@ -24,7 +24,7 @@ class Group(models.Model):
 	notes = models.TextField(blank=True, verbose_name='Notes', default='')	
 	leader = models.OneToOneField('Student',
 	verbose_name='Leader',
-	blank=True,
+	blank=False,
 	null=True,
 	on_delete = models.SET_NULL)
 	def __str__(self):
