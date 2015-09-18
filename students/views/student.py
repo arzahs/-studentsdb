@@ -7,7 +7,7 @@ from students.models import Student, Group
 from django.core.urlresolvers import reverse
 from django.core.paginator  import Paginator, EmptyPage, PageNotAnInteger
 from datetime import datetime
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, DeleteView
 from django.forms import ModelForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
@@ -19,7 +19,7 @@ def student_list(request):
 		students = students.order_by(order_by)
 		if request.GET.get('reverse', '') == '1':
 			students = students.reverse()
-	paginator = Paginator(students, 3)
+	paginator = Paginator(students, 5)
 	page = request.GET.get('page')
 	try:
 		students = paginator.page(page)
@@ -117,6 +117,15 @@ class StudentForm(ModelForm):
 		self.helper.layout[-1] = FormActions(
 		Submit('add_button', u'Save', css_class="btn btn-primary"),
 		Submit('cancel_button', u'Cancel', css_class="btn btn-link"),) 
+
+class StudentDeleteView(DeleteView):
+	model = Student
+	template_name = 'students/student_confirm_delete.html'
+	
+	def get_success_url(self):
+		#return '/'
+		#return u'%s/?status_message=Student has been saved!'% reverse('home')
+		return u'%s?status_message=Student has been deleted!' % reverse('home')
 
         
 class StudentUpdateView(UpdateView):

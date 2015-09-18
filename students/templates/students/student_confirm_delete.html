@@ -1,0 +1,19 @@
+{% extends "students/base.html" %}
+{%  block meta_title %}Edit student{% endblock  %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block title %}<h2>Edit student</h2>{% endblock title %}
+{% block status_message %}
+	
+{% endblock %}
+{% block content %}
+<form action="{% url "students_delete"  object.id %}" method='post'>
+{% csrf_token %}
+	<p>Are you really want to delete {{ object }}</p>
+	<input type="submit" value="Yes" class='btn bnt-danger' name='delete_button'>
+</form>
+
+    
+  
+
+{%  endblock  %}
