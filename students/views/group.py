@@ -41,7 +41,7 @@ class GroupForm(ModelForm):
 		if add_form:
 			self.helper.form_action = reverse('group_add')
 		else:
-			self.helper.form_action = reverse('group_edit',kwargs={'pk': kwargs['instance'].id})
+			self.helper.form_action = reverse('group_edit', kwargs={'pk': kwargs['instance'].id})
 		
 		self.helper.form_method = 'POST'
 		self.helper.form_class = 'form-horizontal'
@@ -87,3 +87,9 @@ class GroupDeleteView(DeleteView):
 		#return '/'
 		#return u'%s/?status_message=Student has been saved!'% reverse('home')
 		return u'%s?status_message=Group has been deleted!' % reverse('groups_list')
+
+	# def post(self, request, *args, **kwargs):
+	# 	try:
+	# 		return HttpResponseRedirect(reverse('groups_list') +u'?status_message=Group deleting.')
+	# 	except:
+	# 		return HttpResponseRedirect(reverse('groups_list') +u'?status_message=Group deleting error.')
