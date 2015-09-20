@@ -1,21 +1,21 @@
 {% extends "students/base.html" %}
 
 {% load static from staticfiles %}
-{% block meta_title %}Відвідування студентів{% endblock meta_title %}
-{% block title %}<h2>Облік відвідування</h2>{% endblock title %}
+{% block meta_title %}Journal of visiting{% endblock meta_title %}
+{% block title %}<h2>Journal</h2>{% endblock title %}
 
 {% block content %}
 			{% if not students %}
 <div class="alert alert-warning">
-Поки немає жодного студента в базі. Будь-ласка,
-<a href="{% url "students_add" %}">додайте</a> першого.
+No student in the database. Please
+<a href="{% url "students_add" %}">add</a> first.
 </div>
 {% else %}
 <p id="journal-nav" class="text-center">
-<a href="?month={{ prev_month }}" title="Попередній Місяць">&larr;</a>
+<a href="?month={{ prev_month }}" title="Prev month">&larr;</a>
 <!-- TODO: translate month name -->
 <strong>{{ month_verbose }} {{ year }}</strong>
-<a href="?month={{ next_month }}" title="Наступний Місяць">&rarr;</a>
+<a href="?month={{ next_month }}" title="Next month">&rarr;</a>
 </p>
 <table class="table table-hover table-striped table-bordered" id="students-journal">
 	<thead>

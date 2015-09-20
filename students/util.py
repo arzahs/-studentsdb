@@ -15,14 +15,14 @@ def paginate(objects, size, request, context, var_name='object_list'):
 	# try to get page number from request
 	page = request.GET.get('page', '1')
 	try:
-	object_list = paginator.page(page)
+		object_list = paginator.page(page)
 	except PageNotAnInteger:
-	# if page is not an integer, deliver first page
-	object_list = paginator.page(1)
+		# if page is not an integer, deliver first page
+		object_list = paginator.page(1)
 	except EmptyPage:
-	# if page is out of range (e.g. 9999),
-	# deliver last page of results
-	object_list = paginator.page(paginator.num_pages)
+		# if page is out of range (e.g. 9999),
+		# deliver last page of results
+		object_list = paginator.page(paginator.num_pages)
 	# set variables into context
 	context[var_name] = object_list
 	context['is_paginated'] = object_list.has_other_pages()

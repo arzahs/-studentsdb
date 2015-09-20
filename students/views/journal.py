@@ -10,23 +10,27 @@ class JournalView(TemplateView):
 	template_name = 'students/journal.html'
 
 	def get_context_data(self, **kwargs):
-		context = super(Journal, self).get_context_data(**kwargs)
+		context = super(JournalView, self).get_context_data(**kwargs)
 
-		today = datetime.today()
-		month = date(today.year, today.month, 1)
+		if self.request.GET.get('month'):
+			month = datetime.strptime(self.request.GET['month'],'%Y-%m-%d').date()
+		else:
+			today = datetime.today()
+			month = date(today.year, today.month, 1)
 
-		context['prev_month'] = '2015-10-01'
-		context['next_month'] = '2015-08-01'
-		context['year'] = 2015
-		context['cur_month'] = '2015-09-01'
-		context['month_verbose'] = u'September'
+		next_month = month + relativedelta(months=1)
+		prev_month = month - relativedelta(month=1)
+		context['prev_month'] = prev_month.strftime('%Y-%m-%d')
+		context['next_month'] = next_month.strftime('%Y-%m-%d')
+		context['year'] = month.year
+		context['cur_month'] = month.strftime('%Y-%m-%d')
+		context['month_verbose'] = month.strftime('%B')
+		myear, mmonth = month.year, month.month
+		number_of_days = monthrange(myear, mmonth)[1]
+
 		context['month_header'] = [
-			{'day':1, 'verbode':'Пн'},
-			{'day':2, 'verbode':'Вт'},
-			{'day':3, 'verbode':'Ср'},
-			{'day':4, 'verbode':'Чт'},
-			{'day':5, 'verbode':'Пт'},
-		]
+			{'day':d, 'verbose': day_abbr[weekday(myear, mmonth, d)][:2]}
+			for d in range(1, number_of_days+1)]
 
 		queryset = Student.objects.order_by('last_name')
 
@@ -35,12 +39,19 @@ class JournalView(TemplateView):
 		students = []
 
 		for student in queryset:
+
+			try:
+				journal = MonthJournal.objects.get(student=student, date=month)
+			except Exception:
+				journal = None
+
 			days = []
-			for day in range(1, 31):
+			for day in range(1, number_of_days+1):
 				days.append({
 					'day':day,
-					'present': True,
-					'date': date(2015, 7, day).strftime('%Y-%m-%d'),
+					'present': journal and getattr(journal, 'present_day%d'% day, False)
+					or False,
+					'date': date(myear, mmonth, day).strftime('%Y-%m-%d'),
 					})
 			students.append({
 				'fullname': u'%s %s' % (student.last_name, student.first_name),
