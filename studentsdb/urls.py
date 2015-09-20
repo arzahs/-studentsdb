@@ -19,6 +19,7 @@ from django.conf.urls.static import static
 from .settings import MEDIA_ROOT, DEBUG
 from students.views.student import StudentUpdateView, StudentDeleteView
 from students.views.group import GroupCreateView, GroupUpdateView, GroupDeleteView
+from students.views.journal import JournalView
 urlpatterns = [
     #Students urls
     url(r'^students/add/$', 'students.views.student.students_add', name='students_add'),
@@ -31,7 +32,7 @@ urlpatterns = [
     url(r'^groups/(?P<pk>[0-9]+)/edit/$', GroupUpdateView.as_view(), name='group_edit'),
     url(r'^groups/(?P<pk>[0-9]+)/delete/$', GroupDeleteView.as_view(), name='group_delete'),
     #Journal
-    url(r'^journal/$', 'students.views.student.journal', name='journal'),
+    url(r'^journal/$', JournalView.as_view(), name='journal'),
     url(r'^admin/', include(admin.site.urls)),
     #debug media 
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT,}),
