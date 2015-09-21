@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^groups/(?P<pk>[0-9]+)/edit/$', GroupUpdateView.as_view(), name='group_edit'),
     url(r'^groups/(?P<pk>[0-9]+)/delete/$', GroupDeleteView.as_view(), name='group_delete'),
     #Journal
-    url(r'^journal/$', JournalView.as_view(), name='journal'),
+    url(r'^journal/(?P<pk>\d+)?/?$', JournalView.as_view(), name='journal'),
     url(r'^admin/', include(admin.site.urls)),
     #debug media 
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT,}),

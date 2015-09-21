@@ -48,7 +48,10 @@ class JournalView(TemplateView):
 			{'day':d, 'verbose': day_abbr[weekday(myear, mmonth, d)][:2]}
 			for d in range(1, number_of_days+1)]
 
-		queryset = Student.objects.order_by('last_name')
+		if kwargs.get('pk'):
+			queryset = [Student.objects.get(pk=kwargs['pk'])]
+		else:
+			queryset = Student.objects.all().order_by('last_name')
 
 		update_url = reverse('journal')
 
