@@ -31,8 +31,9 @@ class Group(models.Model):
 		return u'%s' % (self.title)
 
 class MonthJournal(models.Model):
-	students = models.ForeignKey('Student', verbose_name=u'Student',blank = False, unique_for_month='date')
+	student = models.ForeignKey('Student', verbose_name=u'Student',blank = False, unique_for_month='date')
 	date = models.DateField(verbose_name=u'Date', blank=False)
+	
 	present_day1 = models.BooleanField(default=False)
 	present_day2 = models.BooleanField(default=False)
 	present_day3 = models.BooleanField(default=False)

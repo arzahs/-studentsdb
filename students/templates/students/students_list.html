@@ -59,7 +59,12 @@ height="30" width="30" />
 				</div>
 			
 	<!--End main page-->
-{%if students.has_other_pages %}
-{% include "students/pagination.html"%}
-{% endif %}
+
+{% with object_list=students %}
+	{% include "students/pagination.html" %}
+{% endwith %}
+
 {%	endblock	%}
+{% block extra_js %}
+	
+{% endblock extra_js %}

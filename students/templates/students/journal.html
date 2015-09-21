@@ -11,6 +11,10 @@ No student in the database. Please
 <a href="{% url "students_add" %}">add</a> first.
 </div>
 {% else %}
+<div class="alert alert-warning">
+Changes are automatically saved in a log each click in a cell of the table.
+<span id="ajax-progress-indicator">Date saving...</span>
+</div>
 <p id="journal-nav" class="text-center">
 <a href="?month={{ prev_month }}" title="Prev month">&larr;</a>
 <!-- TODO: translate month name -->
@@ -34,7 +38,7 @@ No student in the database. Please
 	</thead>
 	<tbody>
 		{% csrf_token %}
-		{% for student in students %}
+				{% for student in students %}
 		<tr>
 		<td>
 			{% if is_paginated %}
