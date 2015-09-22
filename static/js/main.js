@@ -27,6 +27,31 @@ function initJournal() {
   });
 }
 
+
+function initGroupSelector() {
+// look up select element with groups and attach our even handler
+// on field "change" event
+$('#group-selector select').change(function(event){
+// get value of currently selected group option
+var group = $(this).val();
+
+if (group) {
+
+  $.cookie('current_group', group, {'path': '/', 'expires': 365});
+  console.log('add group');
+} 
+else {
+  $.removeCookie('current_group', {'path': '/'});
+  console.log('remove group');
+}
+  location.reload(true);
+  console.log('reload');
+  return true;
+});
+
+}
+
 $(document).ready(function(){
-	initJournal();
+  initJournal();
+  initGroupSelector();
 });
