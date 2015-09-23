@@ -4,7 +4,7 @@ from dateutil.relativedelta import relativedelta
 from calendar import monthrange, weekday, day_abbr
 from django.core.urlresolvers import reverse
 from students.models import MonthJournal, Student
-from ..util import paginate
+from ..util import paginate, get_current_group
 from django.http import JsonResponse
 
 
@@ -51,7 +51,11 @@ class JournalView(TemplateView):
 		if kwargs.get('pk'):
 			queryset = [Student.objects.get(pk=kwargs['pk'])]
 		else:
-			queryset = Student.objects.all().order_by('last_name')
+			current_group = get_current_group(self.request)
+			if current_group:
+				queryset = Student.objects.filter(student_group=current_group).order_by('last_name')
+			else:
+				queryset = Student.objects.all().order_by('last_name')
 
 		update_url = reverse('journal')
 
