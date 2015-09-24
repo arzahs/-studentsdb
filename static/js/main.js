@@ -137,6 +137,105 @@ function initEditStudentForm(form, modal) {
     }
   });
 }
+function initAddStudentPage() {
+  $('a.student-add-form-link').click(function(event){
+    var link = $(this);
+    $.ajax({
+      'url': link.attr('href'),
+      'dataType': 'html',
+      'type': 'get',
+      'success': function(data, status, xhr){
+        // check if we got successfull response from the server
+        if (status != 'success') {
+          alert('Server error. Please, repeat later');
+          return false;
+        }
+
+        // update modal window with arrived content from the server
+        var modal = $('#myModal'),
+        html = $(data), form = html.find('#content-column form');
+        modal.find('.modal-title').html(html.find('#content-column h2').text());
+        console.log('success initPage');
+        modal.find('.modal-body').html(form);
+
+        // init our edit form
+        //initAddStudentForm(form, modal);
+        // setup and show modal window finally
+        modal.modal({
+          'keyboard': true,
+          'backdrop': false,
+          'show': true
+        });
+      },
+      'error': function(){
+          alert('Server error. Please, repeat later');
+          return false
+      }
+    });
+    return false;
+  });
+}
+/*function initAddStudentForm(form, modal) {
+  initDateFields();
+
+  // close modal window on Cancel button click
+  form.find('input[name="cancel_button"]').click(function(event){
+    modal.modal('hide');
+    return false;
+  });
+
+  form.ajaxForm({
+    'dataType': 'html',
+    //'type': 'POST',
+    'error': function(){
+        alert('Server error. init Please, repeat later');
+        return false;
+    },
+    'success': function(data, status, xhr) {
+      var html = $(data), newform = html.find('#content-column form');
+
+      // copy alert to modal window
+      modal.find('.modal-body').html(html.find('.alert'));
+      console.log('success initForm');
+      // copy form to modal if we found it in server response
+      if (newform.length > 0) {
+        modal.find('.modal-body').append(newform);
+
+        // initialize form fields and buttons
+        initAddStudentForm(newform, modal);
+      } else {
+        // if no form, it means success and we need to reload page
+        // to get updated students list;
+        // reload after 2 seconds, so that user can read success message
+        setTimeout(function(){location.reload(true);}, 500);
+      }
+    }
+  });
+
+}
+*/
+
+ function calll() {
+  
+
+  var link = $(this);
+
+      var msg = form.serialize();
+      console.log(msg);
+        form.ajaxForm({
+          type: 'POST',
+          dataType: 'html',
+          url: link.attr('href'),
+          data: msg,
+          success: function(data) {
+            alert('profit');
+          },
+          error:  function(xhr, str){
+                alert('Возникла ошибка: ' + xhr.responseCode);
+            }
+        });
+ 
+    }
 
 
 $(document).ready(function(){
@@ -144,4 +243,5 @@ $(document).ready(function(){
   initGroupSelector();
   initDateFields();
   initEditStudentPage();
+  initAddStudentPage();
 });
