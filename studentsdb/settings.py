@@ -68,6 +68,10 @@ LOGGING = {
         'students.signals': {
             'handlers': ['console', 'file'],
             'level': 'INFO', 
+        },
+        'students.views.contact_admin': {
+            'handlers': ['console', 'file'],
+            'level': 'ERROR', 
         }
     }
 }

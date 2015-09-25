@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import logging
 from django.shortcuts import render
 from django import forms
 from django.core.mail import send_mail
@@ -53,6 +53,8 @@ def contact_admin(request):
             except Exception:
                 message = u'When you send a letter to an unexpected error occurred.' \
                     u' Try this form later.'
+                logger = logging.getLogger(__name__)
+                logger.exception(message)
             else:
                 message = u'Message sent successfully!'
 
