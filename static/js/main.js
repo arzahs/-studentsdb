@@ -121,7 +121,6 @@ function initEditStudentForm(form, modal) {
 
       // copy alert to modal window
       modal.find('.modal-body').html(html.find('.alert'));
-      console.log('success initForm');
       // copy form to modal if we found it in server response
       if (newform.length > 0) {
         modal.find('.modal-body').append(newform);
@@ -193,28 +192,32 @@ function initAddStudentForm(form, modal, url) {
         return false;
     },
     'success': function(data, status, xhr) {
-      /*var html = $(data), newform = html.find('#content-column form');
+      
+    var html = $(data), newform = html.find('#content-column form');
 
       // copy alert to modal window
       modal.find('.modal-body').html(html.find('.alert'));
       console.log('success initForm');
       // copy form to modal if we found it in server response*/
-      //if (newform.length > 0) {
-        //modal.find('.modal-body').append(newform);
+      if (newform.length > 0) {
+      modal.find('.modal-body').append(newform);
 
         // initialize form fields and buttons
         //initAddStudentForm(newform, modal);
-      //} else {
+      } else {
         // if no form, it means success and we need to reload page
         // to get updated students list;
         // reload after 2 seconds, so that user can read success message
         ///setTimeout(function(){location.reload(true);}, 500);
-      //}
-      alert('profit');
+         setTimeout(function(){location.reload(true);}, 1800);
+      }
+     
     }
   });
 
 }
+
+
 
 
 
