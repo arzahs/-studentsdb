@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-26 10:35+0000\n"
+"POT-Creation-Date: 2015-09-26 14:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -94,3 +94,55 @@ msgstr "Видалити"
 #: templates/students/students_list.html:58
 msgid "Students not found"
 msgstr "Студенти не знайдені"
+
+#: views/student.py:47
+msgid "Name is required"
+msgstr "Им'я обов'язкове"
+
+#: views/student.py:53
+msgid "Last name is required"
+msgstr "Фамілія обов'язкова"
+
+#: views/student.py:59
+msgid "Birthday is required"
+msgstr "День народження обов'язковий"
+
+#: views/student.py:64
+msgid "Input correct date YYYY-MM-DD"
+msgstr "Введіть коректну дату РРРР-ММ-ДД"
+
+#: views/student.py:70
+msgid "Ticket is required"
+msgstr "Білет обов'язковий"
+
+#: views/student.py:80
+msgid "Input group"
+msgstr "Введіть группу"
+
+#: views/student.py:84
+msgid "Input correctly group"
+msgstr "Введіть коректну группу"
+
+#: views/student.py:93
+msgid "Student has been added"
+msgstr "Студент був добавлений"
+
+#: views/student.py:99
+msgid "Student adding has been canceled"
+msgstr "Добавлення студента відмінено"
+
+#: views/student.py:123
+msgid "Save"
+msgstr "Зберегти"
+
+#: views/student.py:124
+msgid "Cancel"
+msgstr "Відмінити"
+
+#: views/student.py:144
+msgid "Student has been saved!"
+msgstr "Студент був збережений"
+
+#: views/student.py:149
+msgid "Changing a student has been canceled!"
+msgstr "Змінення студента було відмінене!"

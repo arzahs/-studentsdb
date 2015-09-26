@@ -14,6 +14,7 @@ from crispy_forms.layout import Submit
 from crispy_forms.bootstrap import FormActions
 from ..util import paginate, get_current_group
 
+from django.utils.translation import ugettext as _
 
 def student_list(request):
 	current_group = get_current_group(request)
@@ -43,30 +44,30 @@ def students_add(request):
 			#validation input
 			first_name = request.POST['first_name'].strip()
 			if not first_name:
-				errors['first_name'] = u"Name is required"
+				errors['first_name'] = _(u"Name is required")
 			else:
 				data['first_name'] = first_name
 			
 			last_name = request.POST['last_name'].strip()
 			if not last_name:
-				errors['last_name'] = u"Last name is required"
+				errors['last_name'] = _(u"Last name is required")
 			else:
 				data['last_name'] = last_name
 			
 			birthday = request.POST.get('birthday','').strip()
 			if not birthday:
-				errors['birthday'] = u"Birthday is required"
+				errors['birthday'] = _(u"Birthday is required")
 			else:
 				try:
 					datetime.strptime(birthday, '%Y-%m-%d')
 				except ValueError:
-					errors['birthday'] = u'Input correct date YYYY-MM-DD'
+					errors['birthday'] = _(u'Input correct date YYYY-MM-DD')
 				else:
 					data['birthday'] = birthday
 			
 			ticket = request.POST['ticket'].strip()
 			if not ticket:
-				errors['ticket'] = u"Ticket is required"
+				errors['ticket'] = _(u"Ticket is required")
 			else:
 				data['ticket'] = ticket
 			
@@ -76,11 +77,11 @@ def students_add(request):
 			
 			students_group = request.POST.get('student_group','').strip()
 			if not students_group:
-				errors['group'] = u'Input group'
+				errors['group'] = _(u'Input group')
 			else:
 				groups = Group.objects.filter(pk=students_group)
 				if len(groups) != 1:
-					errors['group'] = u'Input correctly group'
+					errors['group'] = _(u'Input correctly group')
 				else:
 					data['student_group'] = groups[0]
 			
@@ -88,12 +89,14 @@ def students_add(request):
 			if not errors:
 				student =Student(**data)
 				student.save()
-				return HttpResponseRedirect(u'%s?status_message=Student has been added!' % reverse('home'))
+				return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('home'), 
+					_(u'Student has been added')))
 			else:
 				return render(request, 'students/student_add.html', {'groups': Group.objects.all().order_by('title'), 'error': errors})
 		
 		elif request.POST.get('cancel_button') is not None:
-			return HttpResponseRedirect(u'%s?status_message=Adding a student has been canceled!' % reverse('home'))
+			return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('home'), 
+				_(u'Student adding has been canceled')))
 	else:
 		return render(request, 'students/student_add.html', {'groups': Group.objects.all().order_by('title')})
 
@@ -117,8 +120,8 @@ class StudentForm(ModelForm):
 		self.helper.field_class = 'col-sm-10'
 		# add buttons
 		self.helper.layout[-1] = FormActions(
-		Submit('add_button', u'Save', css_class="btn btn-primary"),
-		Submit('cancel_button', u'Cancel', css_class="btn btn-link"),) 
+		Submit('add_button', _(u'Save'), css_class="btn btn-primary"),
+		Submit('cancel_button', _(u'Cancel'), css_class="btn btn-link"),) 
 
 class StudentDeleteView(DeleteView):
 	model = Student
@@ -138,11 +141,12 @@ class StudentUpdateView(UpdateView):
 	def get_success_url(self):
 		#return '/'
 		#return u'%s/?status_message=Student has been saved!'% reverse('home')
-		return u'%s?status_message=Student has been saved!' % reverse('home')
+		return u'%s?status_message=%s' % (reverse('home'), _(u"Student has been saved!"))
 	
 	def post(self, request, *args, **kwargs):
 		if request.POST.get('cancel_button'):
-			return HttpResponseRedirect(u'%s?status_message=Changing a student has been canceled!' %reverse('home'))
+			return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('home'), 
+				_(u'Changing a student has been canceled!')))
 		else:
 			return super(StudentUpdateView, self).post(request, *args, **kwargs)
 
