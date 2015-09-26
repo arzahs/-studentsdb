@@ -128,7 +128,7 @@ WSGI_APPLICATION = 'studentsdb.wsgi.application'
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'ru-RU'
+LANGUAGE_CODE = 'uk'
 
 TIME_ZONE = 'UTC'
 
