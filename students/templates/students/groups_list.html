@@ -1,21 +1,22 @@
 {% extends "students/base.html" %}
-{%	block meta_title %}Service for recording students{%	endblock	%}
+{% load i18n %}
+{%	block meta_title %} {% trans "Groups" %}{%	endblock	%}
 {% load staticfiles %}
-{% block title %}<h2>Groups</h2>{% endblock title %}
+{% block title %}<h2>{% trans "Groups" %}</h2>{% endblock title %}
 
 	<!--endsubheader-->
 {% block content %}
 
-			<a href="{% url "group_add" %}" class="btn btn-primary">Add group</a>
+			<a href="{% url "group_add" %}" class="btn btn-primary">{% trans "Add group" %}</a>
 				<div>
 				{%	if groups %}
 				<table class="table table-hover table-striped">
 					<thead>
 						<tr>
 							<th>№</th>
-							<th>Title</th>
-							<th>Steward</th>
-							<th>Actions</th>
+							<th>{% trans "Title" %}</th>
+							<th>{% trans "Steward" %}</th>
+							<th>{% trans "Actions" %}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -30,12 +31,12 @@
 							</td>
 							<td>
 								<div class="dropdown">
-									<button class="btn btn-default dropdown-tooggle" type="button" data-toggle="dropdown">Action
+									<button class="btn btn-default dropdown-tooggle" type="button" data-toggle="dropdown">{% trans "Action" %}
 										<span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu" role="menu">
-									<li role="presentation"><a href="{% url "group_edit" group.id %}" role="menuitem" tabindex="-1">Edit</a></li>
-									<li role="presentation"><a href="{% url "group_delete" group.id %}" role="menuitem" tabindex="-1">Delete</a></li>
+									<li role="presentation"><a href="{% url "group_edit" group.id %}" role="menuitem" tabindex="-1">{% trans "Edit" %}</a></li>
+									<li role="presentation"><a href="{% url "group_delete" group.id %}" role="menuitem" tabindex="-1">{% trans "Delete" %}</a></li>
 									</ul>
 								</div>
 							</td>
@@ -44,7 +45,7 @@
 					</tbody>
 				</table>
 				{% else %}
-				<p>Groups not found</p>
+				<p>{% trans "Groups not found" %}</p>
 				{% endif %}
 				</div>
 

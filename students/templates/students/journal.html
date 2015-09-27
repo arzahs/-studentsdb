@@ -1,35 +1,35 @@
 {% extends "students/base.html" %}
-
+{% load i18n %}
 {% load static from staticfiles %}
-{% block meta_title %}Journal of visiting{% endblock meta_title %}
-{% block title %}<h2>Journal</h2>{% endblock title %}
+{% block meta_title %} {% trans "Journal of visiting" %}{% endblock meta_title %}
+{% block title %}<h2>{% trans "Journal" %}</h2>{% endblock title %}
 
 {% block content %}
 			{% if not students %}
 <div class="alert alert-warning">
-No student in the database. Please
-<a href="{% url "students_add" %}">add</a> first.
+{% trans "No student in the database. Please" %}
+<a href="{% url "students_add" %}">{% trans "add" %}</a> {% trans "first." %}
 </div>
 {% else %}
 <div class="alert alert-warning">
-Changes are automatically saved in a log each click in a cell of the table.
-<span id="ajax-progress-indicator">Date saving...</span>
+{% trans "Changes are automatically saved in a log each click in a cell of the table." %}
+<span id="ajax-progress-indicator">{% trans "Date saving" %}...</span>
 </div>
 <p id="journal-nav" class="text-center">
 <a href="?month={{ prev_month }}" title="Prev month">&larr;</a>
 <!-- TODO: translate month name -->
-<strong>{{ month_verbose }} {{ year }}</strong>
+<strong>{% trans month_verbose %} {{ year }}</strong>
 <a href="?month={{ next_month }}" title="Next month">&rarr;</a>
 </p>
 <table class="table table-hover table-striped table-bordered" id="students-journal">
 	<thead>
 		<tr class="header">
 		<th class="num">#</th>
-		<th class="name">Student</th>
+		<th class="name">{% trans "Student" %}</th>
 		{% for day in month_header %}
 			<th class="day-header">
 			<!-- TODO: translate day name -->
-			{{ day.verbose }}
+			{% trans day.verbose %}
 			<br />
 			{{ day.day }}
 			</th>

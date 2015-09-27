@@ -7,16 +7,16 @@ class  Student(models.Model):
 		verbose_name=_(u'Student')
 		verbose_name_plural=_(u'Students')
 
-	first_name =models.CharField(max_length=256, blank=False, verbose_name='Name')
-	last_name = models.CharField(max_length=256, blank=False, verbose_name='Last Name')
-	middle_name = models.CharField(max_length=256, blank=True, verbose_name='Middle Name', default='')
-	birthday = models.DateField(blank=False, verbose_name='Birthday')
-	photo = models.ImageField(blank=True, verbose_name='Photo')
+	first_name =models.CharField(max_length=256, blank=False, verbose_name=_(u'Name'))
+	last_name = models.CharField(max_length=256, blank=False, verbose_name=_(u'Last Name'))
+	middle_name = models.CharField(max_length=256, blank=True, verbose_name=_(u'Middle Name'), default='')
+	birthday = models.DateField(blank=False, verbose_name=_(u'Birthday'))
+	photo = models.ImageField(blank=True, verbose_name=_(u'Photo'))
 	ticket = models.CharField(max_length=256, blank=False, verbose_name='Ticket')
 	student_group = models.ForeignKey('Group',
-		verbose_name='Group', 
+		verbose_name=_(u'Group'), 
 		blank=False, null=True, on_delete=models.PROTECT)
-	notes = models.TextField(blank=True, verbose_name='Notes', default='')
+	notes = models.TextField(blank=True, verbose_name=_(u'Notes'), default='')
 
 	def __str__(self):
 		return u'%s %s' % (self.first_name, self.last_name)
@@ -27,10 +27,10 @@ class Group(models.Model):
 		verbose_name=_(u'Group')
 		verbose_name_plural=_(u'Groups')
 
-	title =models.CharField(max_length=256, blank=False, verbose_name='Title')
-	notes = models.TextField(blank=True, verbose_name='Notes', default='')	
+	title =models.CharField(max_length=256, blank=False, verbose_name=_(u'Title'))
+	notes = models.TextField(blank=True, verbose_name=_(u'Notes'), default='')	
 	leader = models.OneToOneField('Student',
-	verbose_name='Leader',
+	verbose_name=_(u'Leader'),
 	blank=False,
 	null=True,
 	on_delete = models.SET_NULL)
@@ -42,8 +42,8 @@ class MonthJournal(models.Model):
 		verbose_name=_(u'MonthJournal')
 		verbose_name_plural=_(u'MonthJournals')
 
-	student = models.ForeignKey('Student', verbose_name=u'Student',blank = False, unique_for_month='date')
-	date = models.DateField(verbose_name=u'Date', blank=False)
+	student = models.ForeignKey('Student', verbose_name=_(u'Student'),blank = False, unique_for_month='date')
+	date = models.DateField(verbose_name=_(u'Date'), blank=False)
 	
 	present_day1 = models.BooleanField(default=False)
 	present_day2 = models.BooleanField(default=False)

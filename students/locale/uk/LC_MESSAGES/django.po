@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-27 10:44+0000\n"
+"POT-Creation-Date: 2015-09-27 11:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,25 +19,55 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: models.py:7
-#, fuzzy
-#| msgid "Students"
+#: models.py:7 models.py:45 templates/students/journal.html:28
 msgid "Student"
-msgstr "Студенти"
+msgstr "Студент"
 
 #: models.py:8 templates/students/base.html:43
 msgid "Students"
 msgstr "Студенти"
 
-#: models.py:27
-#, fuzzy
-#| msgid "Group:"
+#: models.py:10
+msgid "Name"
+msgstr "Ім'я"
+
+#: models.py:11
+msgid "Last Name"
+msgstr "Фамилия"
+
+#: models.py:12
+msgid "Middle Name"
+msgstr "По-батькові"
+
+#: models.py:13
+msgid "Birthday"
+msgstr "День народження"
+
+#: models.py:14 templates/students/students_list.html:16
+msgid "Photo"
+msgstr "Фото"
+
+#: models.py:17 models.py:27
 msgid "Group"
-msgstr "Група:"
+msgstr "Група"
+
+#: models.py:19 models.py:31
+msgid "Notes"
+msgstr "Нотатки"
 
 #: models.py:28 templates/students/base.html:45
+#: templates/students/groups_list.html:3 templates/students/groups_list.html:5
 msgid "Groups"
 msgstr "Групи"
+
+#: models.py:30 templates/students/groups_list.html:17
+#: views/contact_admin.py:32
+msgid "Title"
+msgstr "Назва"
+
+#: models.py:33
+msgid "Leader"
+msgstr "Староста"
 
 #: models.py:42
 msgid "MonthJournal"
@@ -46,6 +76,28 @@ msgstr "Місячний журнал"
 #: models.py:43
 msgid "MonthJournals"
 msgstr "Місячні журнали"
+
+#: models.py:46
+msgid "Date"
+msgstr "Дата"
+
+#: templates/contact_admin/form.html:3 templates/contact_admin/form.html:6
+msgid "Contacts"
+msgstr "Контакти"
+
+#: templates/groups/group_confirm_delete.html:2
+#: templates/groups/group_confirm_delete.html:5
+msgid "Deleting group"
+msgstr "Видалення групи"
+
+#: templates/groups/group_confirm_delete.html:12
+msgid "Are you really want to delete"
+msgstr "Ви справді хочете видалити"
+
+#: templates/groups/groups_add.html:3 templates/groups/groups_add.html.py:6
+#: templates/students/groups_list.html:10
+msgid "Add group"
+msgstr "Додати группу"
 
 #: templates/students/base.html:22
 msgid "Service accounting students"
@@ -71,6 +123,63 @@ msgstr "Контакти"
 msgid "Sevice accountig students"
 msgstr "Сервіс Обліку Студентів"
 
+#: templates/students/groups_list.html:18
+msgid "Steward"
+msgstr "Староста"
+
+#: templates/students/groups_list.html:19
+#: templates/students/students_list.html:24
+msgid "Actions"
+msgstr "Дії"
+
+#: templates/students/groups_list.html:34
+#: templates/students/students_list.html:43
+msgid "Action"
+msgstr "Дія"
+
+#: templates/students/groups_list.html:38
+#: templates/students/students_list.html:48
+msgid "Edit"
+msgstr "Редагувати"
+
+#: templates/students/groups_list.html:39
+#: templates/students/students_list.html:49
+msgid "Delete"
+msgstr "Видалити"
+
+#: templates/students/groups_list.html:48
+msgid "Groups not found"
+msgstr "Групи не знайдені"
+
+#: templates/students/journal.html:4
+msgid "Journal of visiting"
+msgstr "Журнал відвідування"
+
+#: templates/students/journal.html:5
+msgid "Journal"
+msgstr "Місячний журнал"
+
+#: templates/students/journal.html:10
+msgid "No student in the database. Please"
+msgstr "Немає студентів в базі данних. Будь-ласка,"
+
+#: templates/students/journal.html:11
+msgid "add"
+msgstr "добавте"
+
+#: templates/students/journal.html:11
+msgid "first."
+msgstr "спочатку студентів."
+
+#: templates/students/journal.html:15
+msgid ""
+"Changes are automatically saved in a log each click in a cell of the table."
+msgstr "Зміни збережуються автоматично, при натисканні на таблицю."
+
+#: templates/students/journal.html:16
+msgid "Date saving"
+msgstr "Інформація зберігається"
+
 #: templates/students/student_add.html:11
 msgid "First name*"
 msgstr "Им’я"
@@ -91,10 +200,6 @@ msgstr "База студентів"
 msgid "Add student"
 msgstr "Додати студента"
 
-#: templates/students/students_list.html:16
-msgid "Photo"
-msgstr "Фото"
-
 #: templates/students/students_list.html:18
 msgid "Last name"
 msgstr "Фамилия"
@@ -107,25 +212,50 @@ msgstr "Им’я"
 msgid "Ticket "
 msgstr "Білет"
 
-#: templates/students/students_list.html:24
-msgid "Actions"
-msgstr "Дії"
-
-#: templates/students/students_list.html:43
-msgid "Action"
-msgstr "Дія"
-
-#: templates/students/students_list.html:48
-msgid "Edit"
-msgstr "Редагувати"
-
-#: templates/students/students_list.html:49
-msgid "Delete"
-msgstr "Видалити"
-
 #: templates/students/students_list.html:58
 msgid "Students not found"
 msgstr "Студенти не знайдені"
+
+#: views/contact_admin.py:28
+msgid "Send"
+msgstr "Відіслати"
+
+#: views/contact_admin.py:30
+msgid "You e-mail"
+msgstr "Ваша адреса"
+
+#: views/contact_admin.py:34
+msgid "Text message"
+msgstr "Текст листа"
+
+#: views/contact_admin.py:54
+msgid ""
+"When you send a letter to an unexpected error occurred. Try this form later."
+msgstr "Виникла помилка при відправленні листа. Повторіть пізніше"
+
+#: views/contact_admin.py:58
+msgid "Message sent successfully!"
+msgstr "Лист відпревлений успішно!"
+
+#: views/group.py:58 views/student.py:123
+msgid "Save"
+msgstr "Зберегти"
+
+#: views/group.py:59 views/student.py:124
+msgid "Cancel"
+msgstr "Відмінити"
+
+#: views/group.py:63
+msgid "Group has been saved!"
+msgstr "Група була збережена"
+
+#: views/group.py:68
+msgid "?status_message=Editing canceled."
+msgstr "?status_message=Редагування відмінено"
+
+#: views/group.py:90
+msgid "Group has been deleted!"
+msgstr "Група була добавлена"
 
 #: views/student.py:47
 msgid "Name is required"
@@ -162,14 +292,6 @@ msgstr "Студент був добавлений"
 #: views/student.py:99
 msgid "Student adding has been canceled"
 msgstr "Добавлення студента відмінено"
-
-#: views/student.py:123
-msgid "Save"
-msgstr "Зберегти"
-
-#: views/student.py:124
-msgid "Cancel"
-msgstr "Відмінити"
 
 #: views/student.py:144
 msgid "Student has been saved!"

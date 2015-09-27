@@ -11,6 +11,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from crispy_forms.bootstrap import FormActions
 from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext as _
 def groups_list(request):
 	groups = Group.objects.all()
 	paginator = Paginator(groups, 5)
@@ -54,17 +55,17 @@ class GroupForm(ModelForm):
 		# self.helper.layout[-1] = FormActions(
 		# Submit('add_button', u'Save', css_class="btn btn-primary"),
 		# Submit('cancel_button', u'Cancel', css_class="btn btn-link"),)
-		self.helper.add_input(Submit('add_button', u'Save')) 
-		self.helper.add_input(Submit('cancel_button', u'Cancel')) 
+		self.helper.add_input(Submit('add_button', _(u'Save'))) 
+		self.helper.add_input(Submit('cancel_button', _(u'Cancel')))
 
 class BaseGroupView(object):
 	def get_success_url(self):
-		return u'%s?status_message=Group has been saved!'% reverse('groups_list')
+		return u'%s?status_message=%s'% (reverse('groups_list'), _(u'Group has been saved!'))
 
 	def post(self, request, *args, **kwargs):
         # handle cancel button
 		if request.POST.get('cancel_button'):
-			return HttpResponseRedirect(reverse('groups_list') +u'?status_message=Editing canceled.')
+			return HttpResponseRedirect(reverse('groups_list') +_(u'?status_message=Editing canceled.'))
 		else:
 			return super(BaseGroupView, self).post(request, *args, **kwargs)
 
@@ -86,7 +87,7 @@ class GroupDeleteView(DeleteView):
 	def get_success_url(self):
 		#return '/'
 		#return u'%s/?status_message=Student has been saved!'% reverse('home')
-		return u'%s?status_message=Group has been deleted!' % reverse('groups_list')
+		return u'%s?status_message=%s' % (reverse('groups_list'), _(u"Group has been deleted!"))
 
 	# def post(self, request, *args, **kwargs):
 	# 	try:

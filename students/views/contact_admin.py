@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 from studentsdb.settings import ADMIN_EMAIL
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
-
+from django.utils.translation import ugettext as _
 class ContactForm(forms.Form):
 	
 	def __init__(self, *args, **kwargs):
@@ -25,13 +25,13 @@ class ContactForm(forms.Form):
 		self.helper.label_class = 'col-sm-2 control-label'
 		self.helper.field_class = 'col-sm-4'
 		# form buttons
-		self.helper.add_input(Submit('send_button', u'Send'))
+		self.helper.add_input(Submit('send_button', _(u'Send')))
 	
-	from_email = forms.EmailField(label=u"You e-mail")
+	from_email = forms.EmailField(label=_(u"You e-mail"))
 	
-	subject = forms.CharField(label=u"Title",max_length=128)
+	subject = forms.CharField(label=_(u"Title"),max_length=128)
 	
-	message = forms.CharField(label=u"Text message",max_length=2560,
+	message = forms.CharField(label=_(u"Text message"),max_length=2560,
 	widget=forms.Textarea)
 
 
@@ -51,12 +51,11 @@ def contact_admin(request):
             try:
                 send_mail(subject, message, from_email, [ADMIN_EMAIL])
             except Exception:
-                message = u'When you send a letter to an unexpected error occurred.' \
-                    u' Try this form later.'
+                message = _(u'When you send a letter to an unexpected error occurred. Try this form later.')
                 logger = logging.getLogger(__name__)
                 logger.exception(message)
             else:
-                message = u'Message sent successfully!'
+                message = _(u'Message sent successfully!')
 
             # redirect to same contact page with success message
             return HttpResponseRedirect(

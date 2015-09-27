@@ -1,8 +1,9 @@
 {% extends "students/base.html" %}
-{%	block meta_title %}Contact{%	endblock	%}
+{% load i18n %}
+{%	block meta_title %} {% trans "Contacts" %}{%	endblock	%}
 {% load staticfiles %}
 {% load crispy_forms_tags %}
-{% block title %}<h2>Contact</h2>{% endblock title %}
+{% block title %}<h2>{% trans "Contacts" %}</h2>{% endblock title %}
 
 {% block content %}
 
