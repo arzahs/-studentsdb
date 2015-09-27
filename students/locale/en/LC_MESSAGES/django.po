@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-27 11:48+0000\n"
+"POT-Creation-Date: 2015-09-27 11:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -178,6 +178,11 @@ msgstr ""
 msgid "Date saving"
 msgstr ""
 
+#: templates/students/student_add.html:3 templates/students/student_add.html:5
+#: templates/students/students_list.html:9
+msgid "Add student"
+msgstr ""
+
 #: templates/students/student_add.html:11
 msgid "First name*"
 msgstr ""
@@ -190,12 +195,26 @@ msgstr ""
 msgid "Middle name"
 msgstr ""
 
-#: templates/students/students_list.html:5
-msgid "Base of students"
+#: templates/students/student_confirm_delete.html:2
+#: templates/students/student_confirm_delete.html:5
+msgid "Deleting student"
 msgstr ""
 
-#: templates/students/students_list.html:9
-msgid "Add student"
+#: templates/students/student_confirm_delete.html:12
+msgid "Are you really want to delete "
+msgstr ""
+
+#: templates/students/student_edit.html:2
+#: templates/students/student_edit.html:5
+msgid "Edit student"
+msgstr ""
+
+#: templates/students/student_edit.html:8
+msgid "Please correct the following errors"
+msgstr ""
+
+#: templates/students/students_list.html:5
+msgid "Base of students"
 msgstr ""
 
 #: templates/students/students_list.html:18

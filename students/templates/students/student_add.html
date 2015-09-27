@@ -1,8 +1,8 @@
 {% extends "students/base.html" %}
 {% load i18n %}
-{%	block meta_title %}Add student{%	endblock	%}
+{%	block meta_title %} {% trans "Add student" %}{%	endblock	%}
 {% load staticfiles %}
-{% block title %}<h2>Add student</h2>{% endblock title %}
+{% block title %}<h2>{% trans "Add student" %}</h2>{% endblock title %}
 {% block content %}
 <form class="form-horizontal" method="post" action="." enctype="multipart/form-data">
 {% csrf_token %}

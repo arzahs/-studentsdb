@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-27 11:48+0000\n"
+"POT-Creation-Date: 2015-09-27 11:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -180,6 +180,11 @@ msgstr "Зміни збережуються автоматично, при на�
 msgid "Date saving"
 msgstr "Інформація зберігається"
 
+#: templates/students/student_add.html:3 templates/students/student_add.html:5
+#: templates/students/students_list.html:9
+msgid "Add student"
+msgstr "Додати студента"
+
 #: templates/students/student_add.html:11
 msgid "First name*"
 msgstr "Им’я"
@@ -192,13 +197,33 @@ msgstr "Фамилия"
 msgid "Middle name"
 msgstr "По-батькові"
 
+#: templates/students/student_confirm_delete.html:2
+#: templates/students/student_confirm_delete.html:5
+#, fuzzy
+#| msgid "Deleting group"
+msgid "Deleting student"
+msgstr "Видалення групи"
+
+#: templates/students/student_confirm_delete.html:12
+#, fuzzy
+#| msgid "Are you really want to delete"
+msgid "Are you really want to delete "
+msgstr "Ви справді хочете видалити"
+
+#: templates/students/student_edit.html:2
+#: templates/students/student_edit.html:5
+#, fuzzy
+#| msgid "Add student"
+msgid "Edit student"
+msgstr "Додати студента"
+
+#: templates/students/student_edit.html:8
+msgid "Please correct the following errors"
+msgstr "Будь-ласка, виправте помилки."
+
 #: templates/students/students_list.html:5
 msgid "Base of students"
 msgstr "База студентів"
-
-#: templates/students/students_list.html:9
-msgid "Add student"
-msgstr "Додати студента"
 
 #: templates/students/students_list.html:18
 msgid "Last name"
