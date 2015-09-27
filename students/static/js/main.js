@@ -69,7 +69,7 @@ function initEditStudentPage() {
       'success': function(data, status, xhr){
         // check if we got successfull response from the server
         if (status != 'success') {
-          alert('Server error. Please, repeat later');
+          alert(gettext('Server error. Please, repeat later'));
           return false;
         }
 
@@ -90,7 +90,7 @@ function initEditStudentPage() {
         });
       },
       'error': function(){
-          alert('Server error. Please, repeat later');
+          alert(gettext('Server error. Please, repeat later'));
           return false
       }
     });
@@ -113,7 +113,7 @@ function initEditStudentForm(form, modal) {
   form.ajaxForm({
     'dataType': 'html',
     'error': function(){
-        alert('Server error. Please, repeat later');
+        alert(gettext('Server error. Please, repeat later'));
         return false;
     },
     'success': function(data, status, xhr) {
@@ -146,7 +146,7 @@ function initAddStudentPage() {
       'success': function(data, status, xhr){
         // check if we got successfull response from the server
         if (status != 'success') {
-          alert('Server error. Please, repeat later');
+          alert(gettext('Server error. Please, repeat later'));
           return false;
         }
 
@@ -166,7 +166,7 @@ function initAddStudentPage() {
         });
       },
       'error': function(){
-          alert('Server error. Please, repeat later');
+         alert(gettext('Server error. Please, repeat later'));
           return false
       }
     });
@@ -188,7 +188,7 @@ function initAddStudentForm(form, modal, url) {
     'type':'POST',
     'data': form.serialize(),
     'error': function(){
-        alert('Server error. init Please, repeat later');
+      alert(gettext('Server error. Please, repeat later'));
         return false;
     },
     'success': function(data, status, xhr) {

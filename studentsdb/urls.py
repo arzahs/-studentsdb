@@ -20,6 +20,11 @@ from .settings import MEDIA_ROOT, DEBUG
 from students.views.student import StudentUpdateView, StudentDeleteView
 from students.views.group import GroupCreateView, GroupUpdateView, GroupDeleteView
 from students.views.journal import JournalView
+
+js_info_dict = {
+'packages': ('students',),
+}
+
 urlpatterns = [
     #Students urls
     url(r'^students/add/$', 'students.views.student.students_add', name='students_add'),
@@ -37,7 +42,7 @@ urlpatterns = [
     #debug media 
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT,}),
     url(r'^contact-admin/$', 'students.views.contact_admin.contact_admin', name='contact_admin'),
-
+    url(r'^jsi18n\.js$', 'django.views.i18n.javascript_catalog', js_info_dict),
     #------
     url(r'^', 'students.views.student.student_list', name='home'),
 
