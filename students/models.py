@@ -1,9 +1,12 @@
 from django.db import models
-
+from django.utils.translation import ugettext_lazy as _
 # Create your models here.
 class  Student(models.Model):
 	"""Student Model"""
-			
+	class Meta(object):
+		verbose_name=_(u'Student')
+		verbose_name_plural=_(u'Students')
+
 	first_name =models.CharField(max_length=256, blank=False, verbose_name='Name')
 	last_name = models.CharField(max_length=256, blank=False, verbose_name='Last Name')
 	middle_name = models.CharField(max_length=256, blank=True, verbose_name='Middle Name', default='')
@@ -20,6 +23,10 @@ class  Student(models.Model):
 
 class Group(models.Model):
 	"""docstring for Group"""
+	class Meta(object):
+		verbose_name=_(u'Group')
+		verbose_name_plural=_(u'Groups')
+
 	title =models.CharField(max_length=256, blank=False, verbose_name='Title')
 	notes = models.TextField(blank=True, verbose_name='Notes', default='')	
 	leader = models.OneToOneField('Student',
@@ -31,6 +38,10 @@ class Group(models.Model):
 		return u'%s' % (self.title)
 
 class MonthJournal(models.Model):
+	class Meta(object):
+		verbose_name=_(u'MonthJournal')
+		verbose_name_plural=_(u'MonthJournals')
+
 	student = models.ForeignKey('Student', verbose_name=u'Student',blank = False, unique_for_month='date')
 	date = models.DateField(verbose_name=u'Date', blank=False)
 	

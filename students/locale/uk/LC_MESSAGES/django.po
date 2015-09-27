@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-26 14:09+0000\n"
+"POT-Creation-Date: 2015-09-27 10:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,34 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: models.py:7
+#, fuzzy
+#| msgid "Students"
+msgid "Student"
+msgstr "Студенти"
+
+#: models.py:8 templates/students/base.html:43
+msgid "Students"
+msgstr "Студенти"
+
+#: models.py:27
+#, fuzzy
+#| msgid "Group:"
+msgid "Group"
+msgstr "Група:"
+
+#: models.py:28 templates/students/base.html:45
+msgid "Groups"
+msgstr "Групи"
+
+#: models.py:42
+msgid "MonthJournal"
+msgstr "Місячний журнал"
+
+#: models.py:43
+msgid "MonthJournals"
+msgstr "Місячні журнали"
 
 #: templates/students/base.html:22
 msgid "Service accounting students"
@@ -31,17 +59,9 @@ msgstr "Група:"
 msgid "All students"
 msgstr "Всі студенти"
 
-#: templates/students/base.html:43
-msgid "Students"
-msgstr "Студенти"
-
 #: templates/students/base.html:44 templates/students/students_list.html:47
 msgid "Visiting"
 msgstr "Відвідування"
-
-#: templates/students/base.html:45
-msgid "Groups"
-msgstr "Групи"
 
 #: templates/students/base.html:46
 msgid "Contact"
@@ -50,6 +70,18 @@ msgstr "Контакти"
 #: templates/students/base.html:68
 msgid "Sevice accountig students"
 msgstr "Сервіс Обліку Студентів"
+
+#: templates/students/student_add.html:11
+msgid "First name*"
+msgstr "Им’я"
+
+#: templates/students/student_add.html:18
+msgid "Last name*"
+msgstr "Фамилия"
+
+#: templates/students/student_add.html:24
+msgid "Middle name"
+msgstr "По-батькові"
 
 #: templates/students/students_list.html:5
 msgid "Base of students"
