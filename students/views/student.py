@@ -30,7 +30,7 @@ def student_list(request):
 		if request.GET.get('reverse', '') == '1':
 			students = students.reverse()
 	
-	context = paginate(students, 3, request, {}, var_name='students')
+	context = paginate(students, 9, request, {}, var_name='students')
 	return render(request, 'students/students_list.html', context)
 
 def students_add(request):

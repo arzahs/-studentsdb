@@ -69,7 +69,7 @@ function initEditStudentPage() {
       'success': function(data, status, xhr){
         // check if we got successfull response from the server
         if (status != 'success') {
-          alert(gettext('Server error. Please, repeat later'));
+          alert(gettext('Server error. Please, repeat later!'));
           return false;
         }
 
