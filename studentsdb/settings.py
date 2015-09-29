@@ -24,7 +24,7 @@ SECRET_KEY = 'r8h-pp-vqxci&assa1!65*a$ph-_m%93^fd!(#ke@o=o2o%1+i'
 LOG_FILE = os.path.join(BASE_DIR, 'student.log')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+REGISTRATION_OPEN = True
 ALLOWED_HOSTS = []
 
 STATICFILES_DIRS = (
@@ -83,6 +83,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'registration',
     'students',
 )
 
