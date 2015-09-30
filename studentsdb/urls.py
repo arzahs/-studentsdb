@@ -21,7 +21,7 @@ from students.views.student import StudentUpdateView, StudentDeleteView
 from students.views.group import GroupCreateView, GroupUpdateView, GroupDeleteView
 from students.views.journal import JournalView
 from django.contrib.auth import views as auth_views
-
+from django.views.generic.base import RedirectView
 js_info_dict = {
 'packages': ('students',),
 }
@@ -43,7 +43,7 @@ urlpatterns = [
     #debug media 
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT,}),
     #auth
-    url(r'^user/logout/$',auth_views.logout, kwargs = {'next_page': 'home'}, name = 'auth_logout')
+    url(r'^user/logout/$',auth_views.logout, kwargs = {'next_page': 'home'}, name = 'auth_logout'),
     url(r'^register/complete/$',RedirectView.as_view(pattern_name = 'home'), name = 'registration_complete'),
     url(r'^users/', include('registration.backends.simple.urls', namespace = 'users')),
     
