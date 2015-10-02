@@ -14,6 +14,9 @@ from crispy_forms.layout import Submit
 from crispy_forms.bootstrap import FormActions
 from ..util import paginate, get_current_group
 
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
 from django.utils.translation import ugettext as _
 
 def student_list(request):

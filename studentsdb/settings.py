@@ -27,6 +27,9 @@ DEBUG = True
 REGISTRATION_OPEN = True
 ALLOWED_HOSTS = []
 
+LOGIN_URL = 'users:auth_login'
+LOGOUT_URL = 'users:auth_logout'
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
