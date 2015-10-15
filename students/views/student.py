@@ -35,7 +35,7 @@ def student_list(request):
 	
 	context = paginate(students, 9, request, {}, var_name='students')
 	return render(request, 'students/students_list.html', context)
-
+@login_required
 def students_add(request):
 	if request.method == 'POST':
 		if request.POST.get('add_button') is not None:
@@ -130,6 +130,11 @@ class StudentDeleteView(DeleteView):
 	model = Student
 	template_name = 'students/student_confirm_delete.html'
 	
+	@method_decorator(login_required)
+	def dispatch(self, *args, **kwargs):
+		return super(StudentDeleteView, self).dispatch(
+			*args, **kwargs)
+
 	def get_success_url(self):
 		#return '/'
 		#return u'%s/?status_message=Student has been saved!'% reverse('home')
@@ -146,6 +151,11 @@ class StudentUpdateView(UpdateView):
 		#return u'%s/?status_message=Student has been saved!'% reverse('home')
 		return u'%s?status_message=%s' % (reverse('home'), _(u"Student has been saved!"))
 	
+	@method_decorator(login_required)
+	def dispatch(self, *args, **kwargs):
+		return super(StudentUpdateView, self).dispatch(
+			*args, **kwargs)
+
 	def post(self, request, *args, **kwargs):
 		if request.POST.get('cancel_button'):
 			return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('home'), 
