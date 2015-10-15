@@ -9,6 +9,8 @@ from studentsdb.settings import ADMIN_EMAIL
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django.utils.translation import ugettext as _
+from django.contrib.auth.decorators import permission_required
+
 class ContactForm(forms.Form):
 	
 	def __init__(self, *args, **kwargs):
@@ -34,7 +36,7 @@ class ContactForm(forms.Form):
 	message = forms.CharField(label=_(u"Text message"),max_length=2560,
 	widget=forms.Textarea)
 
-
+@permission_required('auth.add_user')
 def contact_admin(request):
     # check if form was posted
     if request.method == 'POST':

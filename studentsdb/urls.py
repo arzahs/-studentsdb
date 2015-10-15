@@ -16,12 +16,15 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf.urls.static import static
+from django.contrib.auth.decorators import login_required
 from .settings import MEDIA_ROOT, DEBUG
 from students.views.student import StudentUpdateView, StudentDeleteView
 from students.views.group import GroupCreateView, GroupUpdateView, GroupDeleteView
 from students.views.journal import JournalView
 from django.contrib.auth import views as auth_views
 from django.views.generic.base import RedirectView
+
+
 js_info_dict = {
 'packages': ('students',),
 }
@@ -33,10 +36,10 @@ urlpatterns = [
 	url(r'^students/(?P<sid>[0-9]+)/visiting/$', 'students.views.student.students_visiting', name='students_visiting'),  
     url(r'^students/(?P<pk>[0-9]+)/delete/$', StudentDeleteView.as_view(), name='students_delete'),
     #Groups
-    url(r'^groups/$', 'students.views.group.groups_list', name='groups_list'),
-    url(r'^groups/add/$', GroupCreateView.as_view(), name='group_add'),
-    url(r'^groups/(?P<pk>[0-9]+)/edit/$', GroupUpdateView.as_view(), name='group_edit'),
-    url(r'^groups/(?P<pk>[0-9]+)/delete/$', GroupDeleteView.as_view(), name='group_delete'),
+    url(r'^groups/$', login_required('students.views.group.groups_list'), name='groups_list'),
+    url(r'^groups/add/$', login_required(GroupCreateView.as_view()), name='group_add'),
+    url(r'^groups/(?P<pk>[0-9]+)/edit/$', login_required(GroupUpdateView.as_view()), name='group_edit'),
+    url(r'^groups/(?P<pk>[0-9]+)/delete/$', login_required(GroupDeleteView.as_view()), name='group_delete'),
     #Journal
     url(r'^journal/(?P<pk>\d+)?/?$', JournalView.as_view(), name='journal'),
     url(r'^admin/', include(admin.site.urls)),
