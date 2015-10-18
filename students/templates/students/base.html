@@ -37,7 +37,7 @@ href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
 			</div>
 			
 			<div class="col-xs-2" id="user-toolbar">
-				<span>{{ user.username }}</span>
+				<a href="{% url "profile" %}">{{ user.get_full_name|default:user.username}}</a>
 				<a href="{% url "users:auth_logout" %}">{% trans "Logout" %}</a>
 			</div>
 			

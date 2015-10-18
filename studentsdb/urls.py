@@ -23,8 +23,8 @@ from students.views.group import GroupCreateView, GroupUpdateView, GroupDeleteVi
 from students.views.journal import JournalView
 from django.contrib.auth import views as auth_views
 from django.views.generic.base import RedirectView
-
-
+from django.views.generic import TemplateView
+from students.views.group import groups_list
 js_info_dict = {
 'packages': ('students',),
 }
@@ -36,7 +36,7 @@ urlpatterns = [
 	url(r'^students/(?P<sid>[0-9]+)/visiting/$', 'students.views.student.students_visiting', name='students_visiting'),  
     url(r'^students/(?P<pk>[0-9]+)/delete/$', StudentDeleteView.as_view(), name='students_delete'),
     #Groups
-    url(r'^groups/$', login_required('students.views.group.groups_list'), name='groups_list'),
+    url(r'^groups/$', login_required(groups_list), name='groups_list'),
     url(r'^groups/add/$', login_required(GroupCreateView.as_view()), name='group_add'),
     url(r'^groups/(?P<pk>[0-9]+)/edit/$', login_required(GroupUpdateView.as_view()), name='group_edit'),
     url(r'^groups/(?P<pk>[0-9]+)/delete/$', login_required(GroupDeleteView.as_view()), name='group_delete'),
@@ -46,6 +46,8 @@ urlpatterns = [
     #debug media 
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT,}),
     #auth
+    url(r'^user/profile/$', login_required(TemplateView.as_view(
+        template_name='registration/profile.html')), name = 'profile'),
     url(r'^user/logout/$',auth_views.logout, kwargs = {'next_page': 'home'}, name = 'auth_logout'),
     url(r'^register/complete/$',RedirectView.as_view(pattern_name = 'home'), name = 'registration_complete'),
     url(r'^users/', include('registration.backends.simple.urls', namespace = 'users')),
