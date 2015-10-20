@@ -44,6 +44,7 @@ href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
 			{% else %}
 			
 			<div class="col-xs-6" id="user-toolbar">
+			<a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">{% trans "via Facebook" %}</a> |
 				<a href="{% url "users:auth_login" %}">{% trans "Login" %}</a> |
 				<a href="{% url "users:registration_register" %}">{% trans "Register" %}</a>
 			</div>
