@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from studentsdb.security import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, DATABASES 
+from studentsdb.security import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, DATABASES, SOCIAL_AUTH_FACEBOOK_KEY, SOCIAL_AUTH_FACEBOOK_SECRET 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -105,6 +105,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
   )
 
+
 ROOT_URLCONF = 'studentsdb.urls'
 
 TEMPLATES = [
@@ -122,6 +123,7 @@ TEMPLATES = [
                 'social.apps.django_app.context_processors.login_redirect',
                 'studentsdb.context_processors.students_proc',
                 'students.context_processors.groups_processor',
+
             ],
         },
     },
@@ -133,8 +135,10 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
-SOCIAL_AUTH_FACEBOOK_KEY = ''
-SOCIAL_AUTH_FACEBOOK_SECRET = ''
+SOCIAL_AUTH_FACEBOOK_KEY = '1481114888884638'
+#SOCIAL_AUTH_FACEBOOK_SECRET = '736705282b4dc5c536c6cabcfdc81074'
+#26418673a6ce94b09da79fad15cb21d0
+SOCIAL_AUTH_FACEBOOK_SECRET = '26418673a6ce94b09da79fad15cb21d0'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
