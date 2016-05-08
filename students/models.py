@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 # Create your models here.
-class  Student(models.Model):
+class Student(models.Model):
 	"""Student Model"""
 	class Meta(object):
 		verbose_name=_(u'Student')
@@ -15,7 +15,7 @@ class  Student(models.Model):
 	ticket = models.CharField(max_length=256, blank=False, verbose_name='Ticket')
 	student_group = models.ForeignKey('Group',
 		verbose_name=_(u'Group'), 
-		blank=False, null=True, on_delete=models.PROTECT)
+		blank=True, null=True, on_delete=models.PROTECT)
 	notes = models.TextField(blank=True, verbose_name=_(u'Notes'), default='')
 
 	def __str__(self):
@@ -31,7 +31,7 @@ class Group(models.Model):
 	notes = models.TextField(blank=True, verbose_name=_(u'Notes'), default='')	
 	leader = models.OneToOneField('Student',
 	verbose_name=_(u'Leader'),
-	blank=False,
+	blank=True,
 	null=True,
 	on_delete = models.SET_NULL)
 	def __str__(self):
